@@ -311,6 +311,25 @@
       });
     });
     </code>
+
+  <h2>Own code</h2>
+  <button><a href="https://www.maxmassage.ru/?theme_preview=1450142" target="_blank">Preview theme</a></button>
+  <button><a
+      href="https://www.maxmassage.ru/collection/apparaty-pressoterapii-limfodrenazha-SEVEN-LINER-ZAM-ZAM/product/welbutech-seven-liner-zam-luxury-z-sport-apparat-dlya-limfodrenazha-pressoterapii-massazha-standartnyy-komplekt-razmer-l"
+      target="_blank">Product card</a></button>
+
+  <code>
+    const razmeryTab = document.querySelector('#razmery');
+    const razmeryTabActive = document.querySelector('.prop-Razmery');
+
+    function razmery() {
+      razmeryTabActive.style.display = 'block';
+      razmeryTab.addEventListener('click', razmeryTab.scrollIntoView({
+        behavior: 'smooth'
+      }))
+    };
+      </code>
+
 </body>
 
 </html>
