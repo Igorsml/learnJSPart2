@@ -14,14 +14,15 @@
   <p>Добавьте JavaScript к кнопке button, чтобы при нажатии
     div id="text" исчезал. элемент></p>
 
-  <button id="textHide" onclick="hideText()">Исчезновение</button>
+  <button id="textHide">Исчезновение</button>
   <div id="text">Исчезни меня</div>
 
   <script>
     const text = document.querySelector('#text');
     const button = document.querySelector('#textHide');
 
-    const hideText = () => text.remove();
+    const hideText = (elem) => elem.remove();
+
     text.addEventListener('click', hideText);
   </script>
 
@@ -38,16 +39,26 @@
   <h2>Task #2. Спрятать себя</h2>
   Создайте кнопку, которая будет скрывать себя по нажатию.</p>
 
-  <button id="hideMe" onclick="removeButton()">Hide me</button>
+  <button id="hideMe">Hide me</button>
 
   <script>
     const button2 = document.querySelector('#hideMe');
-    const removeButton = () => button2.addEventListener('click', button2.remove());
+
+    const removeButton = (elem) => {
+      elem.remove();
+    }
+
+    button2.addEventListener('click', removeButton());
   </script>
 
   <code>
     const button2 = document.querySelector('#hideMe');
-    const removeButton = () => button2.addEventListener('click', button2.remove());
+
+    const removeButton = (elem) => {
+      elem.remove();
+    }
+
+    button2.addEventListener('click', removeButton());
     </code>
 
   <hr>
@@ -180,8 +191,8 @@
     const pane = document.querySelectorAll('.pane');
 
     document.querySelectorAll('.remove-button').forEach(item => {
-      item.addEventListener('click', function () {
-        item.closest('div').remove();
+      item.addEventListener('click', () => {
+        item.closest('div.pane').remove();
       })
     })
   </script>
@@ -324,11 +335,13 @@
 
     function razmery() {
       razmeryTabActive.style.display = 'block';
-      razmeryTab.addEventListener('click', razmeryTab.scrollIntoView({
-        behavior: 'smooth'
-      }))
-    };
-      </code>
+      razmeryTab.scrollIntoView({
+      behavior: 'smooth'
+      })
+    }
+
+    razmeryTab.addEventListener('click', razmery());
+   </code>
 
 </body>
 
