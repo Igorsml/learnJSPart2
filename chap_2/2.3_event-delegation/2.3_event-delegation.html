@@ -11,7 +11,7 @@
 
 <body>
   <h2>Task # 1. Спрячьте сообщения с помощью делегирования</h2>
-  <div id="container" data-removeItem>
+  <div id="container">
     <div class="pane">
       <h3>Лошадь</h3>
       <p>Домашняя лошадь - животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой
@@ -95,9 +95,26 @@
   </ul>
 
   <script>
+    function wrap(parent, className) {
+      const wrapper = document.createElement('span');
+      wrapper.classList = className;
+
+      parent.childNodes.forEach(child => wrapper.appendChild(child));
+      parent.appendChild(wrapper);
+    }
+
+    document.querySelectorAll('.tree ul li').forEach(li => {
+      wrap(li, 'tree-li')
+    });
+
     document.addEventListener('click', (event) => {
+      if (event.target.tagName !== 'span') {
+        console.log('test')
+      }
+
       const item = event.target.closest('li');
-      console.log(item);
+      console.log(item)
+      item.hidden = !item.hidden;
     });
   </script>
 
