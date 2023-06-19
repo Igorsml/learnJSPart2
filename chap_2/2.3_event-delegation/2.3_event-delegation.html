@@ -95,32 +95,46 @@
   </ul>
 
   <script>
-    function wrap(parent, className) {
+    function wrap(li, className) {
       const wrapper = document.createElement('span');
       wrapper.classList = className;
 
-      parent.childNodes.forEach(child => wrapper.appendChild(child));
-      parent.appendChild(wrapper);
+      li.prepend(wrapper);
+      wrapper.append(wrapper.nextSibling);
     }
 
-    document.querySelectorAll('.tree ul li').forEach(li => {
+    tree.querySelectorAll('li').forEach(li => {
       wrap(li, 'tree-li')
     });
 
-    document.addEventListener('click', (event) => {
-      if (event.target.tagName !== 'span') {
-        console.log('test')
-      }
+    tree.addEventListener(`click`, (evt) => {
+      if (evt.target.tagName !== `SPAN`) return;
+      const childUl = evt.target.parentNode.querySelector(`ul`);
 
-      const item = event.target.closest('li');
-      console.log(item)
-      item.hidden = !item.hidden;
+      if (childUl) childUl.hidden = !childUl.hidden;
     });
   </script>
 
 
   <code>
+    function wrap(li, className) {
+      const wrapper = document.createElement('span');
+      wrapper.classList = className;
 
+      li.prepend(wrapper);
+      wrapper.append(wrapper.nextSibling);
+    }
+
+    tree.querySelectorAll('li').forEach(li => {
+      wrap(li, 'tree-li')
+    });
+
+    tree.addEventListener(`click`, (evt) => {
+      if (evt.target.tagName !== `SPAN`) return;
+      const childUl = evt.target.parentNode.querySelector(`ul`);
+
+      if (childUl) childUl.hidden = !childUl.hidden;
+    });
 </code>
 
   <hr>
@@ -130,8 +144,8 @@
   <table id="grid">
     <thead>
       <tr>
-        <th data-type="number">Возраст</th>
-        <th data-type="string">Имя</th>
+        <th data-type="age">Возраст</th>
+        <th data-type="name">Имя</th>
       </tr>
     </thead>
     <tbody>
@@ -156,11 +170,32 @@
         <td>Илья</td>
       </tr>
     </tbody>
+    <button id="reset">Reset sort</button>
   </table>
 
 
   <script>
 
+    document.addEventListener("click", (event) => {
+      const sortRow = event.target.dataset.type;
+      let tableRows = grid.rows;
+
+      if (sortRow === 'age') {
+        Array.from(tableRows).sort((a, b) => a.cells[0].textContent - b.cells[0].textContent)
+          .forEach(tr => grid.appendChild(tr));
+      }
+
+      if (sortRow === 'name') {
+        Array.from(tableRows).sort((a, b) => {
+          console.log(a.cells[2].textContent)
+          a.cells[1].textContent.localCompare(b.cells[1].textContent, 'ru', { sensitivity: 'base' })
+        })
+          .forEach(tr => grid.appendChild(tr));
+      }
+
+      reset.addEventListener("click", () => tableRows = Array.from(tableRows).forEach(tr => grid.appendChild(tr)));
+
+    });
   </script>
 
 
@@ -182,7 +217,18 @@
   </p>
 
   <script>
+    document.addEventListener('mouseover', (event) => {
+      const tooltip = event.target.dataset.tooltip;
+      const coords = event.target.getBoundingClientRect();
 
+      if (tooltip) {
+        const p = document.createElement('p');
+        p.innerHTML = tooltip;
+        console.log(p);
+        event.target.style.position = 'relative';
+        p.classList.add('p-tooltip');
+      }
+    });
   </script>
 
 

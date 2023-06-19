@@ -221,6 +221,7 @@ html,
 .tree-li {
   display: inline-block;
   cursor: pointer;
+  list-style: none;
   transform: scale(1);
   transition: transform .2s linear;
 }
@@ -245,4 +246,29 @@ th {
 }
 th:hover {
   background: yellow;
+}
+
+
+
+.tooltip .p-tooltip {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+.tooltip:hover .p-tooltip {
+  visibility: visible;
+  transition-delay: 0.3s;
 }
