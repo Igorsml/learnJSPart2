@@ -175,32 +175,54 @@
 
 
   <script>
+    grid.querySelector('thead tr').onclick = event => {
+      if (event.target.tagName != 'TH') return;
 
-    document.addEventListener("click", (event) => {
-      const sortRow = event.target.dataset.type;
-      let tableRows = grid.rows;
+      const sortType = event.target.dataset.type;
+      const table = event.currentTarget.closest('table');
+      let tbody = table.tBodies[0];
+      const cellIndex = event.target.cellIndex; // 0, 1 etc.
+      const tbodyRows = Array.from(tbody.rows)
 
-      if (sortRow === 'age') {
-        Array.from(tableRows).sort((a, b) => a.cells[0].textContent - b.cells[0].textContent)
-          .forEach(tr => grid.appendChild(tr));
-      }
+      const result = tbodyRows.sort((a, b) => {
+        switch (sortType) {
+          case 'age':
+            return +a.cells[cellIndex].innerText - +b.cells[cellIndex].innerText;
+            break;
+          case 'name':
+            return a.cells[cellIndex].innerText.localeCompare(b.cells[cellIndex].innerText, 'ru', { sensitivity: 'base' })
+            break;
+        }
+      });
 
-      if (sortRow === 'name') {
-        Array.from(tableRows).sort((a, b) => {
-          console.log(a.cells[2].textContent)
-          a.cells[1].textContent.localCompare(b.cells[1].textContent, 'ru', { sensitivity: 'base' })
-        })
-          .forEach(tr => grid.appendChild(tr));
-      }
-
-      reset.addEventListener("click", () => tableRows = Array.from(tableRows).forEach(tr => grid.appendChild(tr)));
-
-    });
+      tbody.append(...result)
+    }
   </script>
 
 
   <code>
+    grid.querySelector('thead tr').onclick = event => {
+      if (event.target.tagName != 'TH') return;
 
+      const sortType = event.target.dataset.type;
+      const table = event.currentTarget.closest('table');
+      let tbody = table.tBodies[0];
+      const cellIndex = event.target.cellIndex; // 0, 1 etc.
+      const tbodyRows = Array.from(tbody.rows)
+
+      const result = tbodyRows.sort((a, b) => {
+        switch (sortType) {
+          case 'age':
+            return +a.cells[cellIndex].innerText - +b.cells[cellIndex].innerText;
+            break;
+          case 'name':
+            return a.cells[cellIndex].innerText.localeCompare(b.cells[cellIndex].innerText, 'ru', { sensitivity: 'base' })
+            break;
+        }
+      });
+
+      tbody.append(...result)
+    }
 </code>
 
   <hr>
@@ -217,17 +239,41 @@
   </p>
 
   <script>
+    let div = document.createElement('div');
+
     document.addEventListener('mouseover', (event) => {
       const tooltip = event.target.dataset.tooltip;
-      const coords = event.target.getBoundingClientRect();
+      const clientRect = event.target.getBoundingClientRect();
+      const margin = 5;
+
+      if (!tooltip) return;
 
       if (tooltip) {
-        const p = document.createElement('p');
-        p.innerHTML = tooltip;
-        console.log(p);
-        event.target.style.position = 'relative';
-        p.classList.add('p-tooltip');
+        div.innerHTML = tooltip;
+        div.classList.add('div-tooltip');
+        document.body.append(div);
       }
+
+      const coords = {
+        left: clientRect.left + event.target.offsetWidth / 2 - div.offsetWidth / 2,
+        top: clientRect.top - div.offsetHeight - margin
+      };
+
+      if (clientRect.top - div.offsetHeight - margin < 0) {
+        coords.top = clientRect.top + event.target.offsetHeight + margin;
+      }
+
+      if (clientRect.left - (event.target.offsetWidth - div.offsetWidth) / 2 < 0) {
+        coords.left = 0;
+      }
+
+      div.style.top = coords.top + 'px';
+      div.style.left = coords.left + 'px';
+    });
+    const tooltip = event.target.dataset.tooltip;
+    div.addEventListener('mouseout', event => {
+      div.remove();
+      div = null;
     });
   </script>
 
