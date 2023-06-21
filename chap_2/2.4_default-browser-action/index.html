@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+
+    <h2>Task # 1. </h2>
+    <p>Почему в коде ниже return false не работает?
+      Браузер переходит по указанной ссылке, но нам этого не нужно.
+      Как поправить?
+    </p>
+    <code>
+
+      function handler() {
+        alert("...");
+        return false;
+      }
+
+     
+    <a href="https://w3.org" onclick="handler()" target="_blank">браузер откроет w3.org</a>
+  </code>
+
+    <a href="https://w3.org" onclick="handler()" target="_blank">браузер откроет w3.org</a>
+    <script>
+      function handler() {
+        event.preventDefault();
+        return false;
+      }
+    </script>
+
+
+    <h3>Answer: </h3>
+    <code>
+      function handler() {
+        event.preventDefault();
+        return false;
+      }
+    </code>
+
+    <hr>
+    <h2>Task # 2. Поймайте переход по ссылке</h2>
+    <p>Сделайте так, чтобы при клике на ссылки внутри элемента id="contents" пользователю выводился вопрос о том,
+      действительно ли он хочет покинуть страницу, и если он не хочет, то прерывать переход по ссылке.
+
+      Так это должно работать:
+    <fieldset id="contents">
+      <legend>#contents</legend>
+      <p>
+        Как насчёт того, чтобы прочитать <a href="https://wikipedia.org">Википедию</a> или посетить <a
+          href="https://w3.org"><i>W3.org</i></a> и узнать о современных стандартах?
+      </p>
+    </fieldset>
+
+
+    <p>Детали:</p>
+    <ul>
+      <li> Содержимое #contents может быть загружено динамически и присвоено при помощи innerHTML. Так что найти все
+        ссылки и
+        поставить на них обработчики нельзя. Используйте делегирование.</li>
+      <li>Содержимое может иметь вложенные теги, в том числе внутри ссылок, например, <a href=".."><i>...</i></a>.</li>
+    </ul>
+    </p>
+
+    <script>
+      contents.addEventListener('click', (event) => {
+        const a = event.target.closest('a');
+        if (!a) return;
+        const goAnotherPage = confirm(`Leave for ${event.target.innerHTML}?`);
+
+        if (!goAnotherPage) {
+          event.preventDefault();
+          alert('ok, sidi tut zopa')
+        }
+      });
+    </script>
+
+    <code>
+      contents.addEventListener('click', (event) => {
+        const a = event.target.closest('a');
+        if (!a) return;
+        const goAnotherPage = confirm(`Leave for ${event.target.innerHTML}?`);
+
+        if (!goAnotherPage) {
+          event.preventDefault();
+          alert('ok, sidi tut zopa')
+        }
+      });
+  </code>
+
+    <hr>
+
+    <h2>Task # 3. Галерея изображений</h2>
+    <p>Создайте галерею изображений, в которой основное изображение изменяется при клике на уменьшенный вариант.</p>
+
+    <p><img id="largeImg" src="./assets/1.webp" alt="Large image"></p>
+
+    <ul id="thumbs">
+      <li>
+        <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img src="./assets/1.webp"></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img src="./assets/2.webp"></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img src="./assets/3.webp"></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img src="./assets/4.webp"></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img src="./assets/5.webp"></a>
+      </li>
+    </ul>
+    <script>
+
+    </script>
+
+    <code>
+
+  </code>
+
+    <hr>
+
+    <h2>Task # 4. </h2>
+
+    <script>
+
+    </script>
+
+    <code>
+
+  </code>
+
+    <hr>
+
+  </body>
+
+  </html>
+
+
+</body>
+
+</html>
