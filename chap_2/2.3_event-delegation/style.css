@@ -78,12 +78,15 @@ html,
     display: inline-block;
     text-decoration: none;
     margin: 10px;
+    width: 30%;
     background-color: #4caf50;
     color: white;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    border: 1px solid #ccc;
     font-size: 15px;
+    font-weight: 600;
     transition: background-color .2s linear;
   }
 
@@ -119,6 +122,7 @@ html,
 
 .remove-button {
   font-size: 110%;
+  width:fit-content;
   color: darkred;
   border: none;
   background: transparent;

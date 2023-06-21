@@ -175,6 +175,8 @@
 
 
   <script>
+    const resetSort = Array.from(grid.tBodies[0].rows);
+
     grid.querySelector('thead tr').onclick = event => {
       if (event.target.tagName != 'TH') return;
 
@@ -195,12 +197,19 @@
         }
       });
 
-      tbody.append(...result)
+      tbody.append(...result);
+
+      reset.addEventListener('click', () => {
+        tbody.append(...resetSort)
+      })
     }
+
   </script>
 
 
   <code>
+    const resetSort = Array.from(grid.tBodies[0].rows);
+
     grid.querySelector('thead tr').onclick = event => {
       if (event.target.tagName != 'TH') return;
 
@@ -221,16 +230,17 @@
         }
       });
 
-      tbody.append(...result)
-    }
+      tbody.append(...result);
+
+      reset.addEventListener('click', () => {
+        tbody.append(...resetSort)
+      })
 </code>
 
   <hr>
 
 
   <h2>Task # 4. Поведение "подсказка"</h2>
-  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
-  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
 
   <button data-tooltip="эта подсказка должна быть длиннее, чем элемент">Короткая кнопка</button>
   <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
@@ -239,23 +249,22 @@
   </p>
 
   <script>
-    let div = document.createElement('div');
+    let div;
 
     document.addEventListener('mouseover', (event) => {
       const tooltip = event.target.dataset.tooltip;
-      const clientRect = event.target.getBoundingClientRect();
       const margin = 5;
 
       if (!tooltip) return;
 
-      if (tooltip) {
-        div.innerHTML = tooltip;
-        div.classList.add('div-tooltip');
-        document.body.append(div);
-      }
+      div = document.createElement('div');
+      div.innerHTML = tooltip;
+      div.classList.add('div-tooltip');
+      document.body.append(div);
 
+      const clientRect = event.target.getBoundingClientRect();
       const coords = {
-        left: clientRect.left + event.target.offsetWidth / 2 - div.offsetWidth / 2,
+        left: clientRect.left + (event.target.offsetWidth - div.offsetWidth) / 2,
         top: clientRect.top - div.offsetHeight - margin
       };
 
@@ -270,16 +279,54 @@
       div.style.top = coords.top + 'px';
       div.style.left = coords.left + 'px';
     });
-    const tooltip = event.target.dataset.tooltip;
-    div.addEventListener('mouseout', event => {
-      div.remove();
-      div = null;
+
+    document.addEventListener('mouseout', event => {
+      if (div) {
+        div.remove();
+        div = null;
+      }
     });
   </script>
 
 
   <code>
+    let div;
 
+    document.addEventListener('mouseover', (event) => {
+      const tooltip = event.target.dataset.tooltip;
+      const margin = 5;
+
+      if (!tooltip) return;
+
+      div = document.createElement('div');
+      div.innerHTML = tooltip;
+      div.classList.add('div-tooltip');
+      document.body.append(div);
+
+      const clientRect = event.target.getBoundingClientRect();
+      const coords = {
+        left: clientRect.left + (event.target.offsetWidth - div.offsetWidth) / 2,
+        top: clientRect.top - div.offsetHeight - margin
+      };
+
+      if (clientRect.top - div.offsetHeight - margin < 0) {
+        coords.top = clientRect.top + event.target.offsetHeight + margin;
+      }
+
+      if (clientRect.left - (event.target.offsetWidth - div.offsetWidth) / 2 < 0) {
+        coords.left = 0;
+      }
+
+      div.style.top = coords.top + 'px';
+      div.style.left = coords.left + 'px';
+    });
+
+    document.addEventListener('mouseout', event => {
+      if (div) {
+        div.remove();
+        div = null;
+      }
+    });
 </code>
 
   <hr>
