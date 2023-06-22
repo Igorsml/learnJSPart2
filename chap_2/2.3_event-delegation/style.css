@@ -8,10 +8,6 @@ html,
     margin: 1em auto;
   }
 
-  header {
-    flex-shrink: 0;
-  }
-
   body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
@@ -22,8 +18,14 @@ html,
   header {
     background-color: #333;
     padding: 10px;
+    flex-shrink: 0;
   }
 
+  
+  h2 {
+    color: rgb(66, 66, 66);
+    border-bottom: 1px solid #ccc;
+  }
   
    code {
     background: rgb(250, 223, 169);

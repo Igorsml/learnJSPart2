@@ -73,6 +73,11 @@ html,
     font-size: 30px;
   }
 
+  h2 {
+    color: rgb(66, 66, 66);
+    border-bottom: 1px solid #ccc;
+  }
+
 
   button {
     display: inline-block;

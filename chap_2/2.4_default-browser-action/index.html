@@ -115,19 +115,19 @@
 
     <ul id="thumbs">
       <li>
-        <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img src="./assets/2.webp"></a>
+        <a href="./assets/2.webp" title="Image 2"><img src="./assets/2.webp"></a>
       </li>
       <li>
-        <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img src="./assets/3.webp"></a>
+        <a href="./assets/3.webp" title="Image 3"><img src="./assets/3.webp"></a>
       </li>
       <li>
-        <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img src="./assets/4.webp"></a>
+        <a href="./assets/4.webp" title="Image 4"><img src="./assets/4.webp"></a>
       </li>
       <li>
-        <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img src="./assets/5.webp"></a>
+        <a href="./assets/5.webp" title="Image 5"><img src="./assets/5.webp"></a>
       </li>
       <li>
-        <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img src="./assets/6.webp"></a>
+        <a href="./assets/6.webp" title="Image 6"><img src="./assets/6.webp"></a>
       </li>
     </ul>
 
@@ -137,11 +137,11 @@
       thumbs.addEventListener('click', (event) => {
         event.preventDefault();
 
-        const img = event.target.closest('img');
-        if (!img) return;
+        const a = event.target.closest('a');
+        if (!a) return;
 
-        largeImg.src = img.src;
-        img.src = largeImg.src;
+        largeImg.src = a.href;
+        largeImg.alt = a.title;
       })
     </script>
 
@@ -151,21 +151,17 @@
       thumbs.addEventListener('click', (event) => {
         event.preventDefault();
 
-        const img = event.target.closest('img');
-        if (!img) return;
+        const a = event.target.closest('a');
+        if (!a) return;
 
-        largeImg.src = img.src;
-        img.src = largeImg.src;
+        largeImg.src = a.href;
+        largeImg.alt = a.title;
       })
   </code>
 
     <hr>
 
-    <h2>Task # 4. </h2>
 
-    <script>
-
-    </script>
 
     <code>
 
