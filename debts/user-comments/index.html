@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse events</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png.png">
+  <link rel="manifest" href="../../favicon/site.webmanifest">
+  <link rel="mask-icon" href="../../favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="./style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <h1>Список комментариев</h1>
+  <hr>
+  <div id="root" class="comments"></div>
+  <code>
+    const root = document.querySelector("#root");
+
+    async function getUserComments() {
+      const comments = await fetch(
+        "https://jsonplaceholder.typicode.com/comments?_start=0&_limit=12"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          for (const comment of data) {
+            root.insertAdjacentHTML(
+              "beforeend",
+              `
+              <!-- <div class="comment">
+                <div class="comment-body">
+                  <h2><i class='bx bx-edit-alt' ></i> ${comment.name}</h2>
+                  <p class="comment-body__email"><i class='bx bx-envelope'></i> ${comment.email}</p>
+                  <p class="comment-body__description"><i class='bx bx-water' ></i> ${comment.body}</p>
+                </div>
+              </div> -->
+              `
+            );
+          }
+        })
+        .catch((err) => console.log(err.message));
+    }
+    
+    getUserComments();
+  </code>
+  <script src="./main.js"></script>
+</body>
+
+</html>
