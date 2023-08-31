@@ -44,51 +44,54 @@
 
   </div>
   <script>
-    let div;
-    let currentElem = null;
-
     const house = document.querySelector('#house');
+    let tooltip;
 
-    house.onmouseover = (event) => {
+    house.onmouseover = function (event) {
+      let target = event.target.closest('[data-tooltip]');
+      if (!house.contains(target)) return;
 
-      const tooltip = event.target.dataset.tooltip;
-      const margin = 5;
+      tooltip = document.createElement('div');
+      tooltip.innerHTML = target.dataset.tooltip;
+      tooltip.classList.add('tooltip');
+      document.body.append(tooltip);
 
-      let target = event.target.closest('p');
-      if (!tooltip) return;
+      let left = target.getBoundingClientRect().left + (target.offsetWidth - tooltip.offsetWidth) / 2;
+      let top = target.getBoundingClientRect().top - tooltip.offsetHeight - 5;
 
-      div = document.createElement('div');
-      div.innerHTML = tooltip;
-      div.classList.add('div-tooltip');
-      document.body.append(div);
+      if (left < 0) left = 0;
+      if (top < 0) top = target.getBoundingClientRect().bottom + 5;
 
-      const clientRect = event.target.getBoundingClientRect();
-      const coords = {
-        left: clientRect.left + (event.target.offsetWidth - div.offsetWidth) / 2,
-        top: clientRect.top - div.offsetHeight - margin
-      };
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+    }
 
-      if (clientRect.top - div.offsetHeight - margin < 0) {
-        coords.top = clientRect.top + event.target.offsetHeight + margin;
-      }
-
-      if (clientRect.left - (event.target.offsetWidth - div.offsetWidth) / 2 < 0) {
-        coords.left = 0;
-      }
-
-      div.style.top = coords.top + 'px';
-      div.style.left = coords.left + 'px';
-    };
-
-    document.addEventListener('mouseout', event => {
-      if (div) {
-        div.remove();
-        div = null;
-      }
-    });
+    house.onmouseout = () => tooltip.remove();
   </script>
   <code>
+    const house = document.querySelector('#house');
+    let tooltip;
 
+    house.onmouseover = function (event) {
+      let target = event.target.closest('[data-tooltip]');
+      if (!house.contains(target)) return;
+
+      tooltip = document.createElement('div');
+      tooltip.innerHTML = target.dataset.tooltip;
+      tooltip.classList.add('tooltip');
+      document.body.append(tooltip);
+
+      let left = target.getBoundingClientRect().left + (target.offsetWidth - tooltip.offsetWidth) / 2;
+      let top = target.getBoundingClientRect().top - tooltip.offsetHeight - 5;
+
+      if (left < 0) left = 0;
+      if (top < 0) top = target.getBoundingClientRect().bottom + 5;
+
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+    }
+
+    house.onmouseout = () => tooltip.remove();
   </code>
 
   <hr>
@@ -111,26 +114,16 @@
     over – функция, вызываемая, при заходе на элемент, считаем что заход – это когда курсор медленно двигается или
     остановился над элементом.
     out – функция, вызываемая при уходе курсора с элемента (если был заход).</p>
-  <div id="elem" class="clock">
-    <span class="hours">12</span> :
-    <span class="minutes">30</span> :
-    <span class="seconds">00</span>
+  <div class="tooltip-wrap">
+    <div id="tooltipTimer" hidden>Подсказка</div>
+    <div id="elem" class="clock">
+      <span class="hours">12</span> :
+      <span class="minutes">30</span> :
+      <span class="seconds">00</span>
+    </div>
   </div>
-
-  <div id="tooltip" hidden>Подсказка</div>
   <script>
-    // для демо
-    setTimeout(function () {
-      new HoverIntent({
-        elem,
-        over() {
-          tooltip.hidden = false;
-        },
-        out() {
-          tooltip.hidden = true;
-        }
-      });
-    }, 2000);
+
   </script>
 
   <code>
@@ -140,7 +133,6 @@
   <hr>
 
   <script src="./main.js"></script>
-  <script src="hoverIntent.js"></script>
   <script src="https://js.cx/test/libs.js"></script>
   <script src="test.js"></script>
 </body>
