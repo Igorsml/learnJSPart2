@@ -27,6 +27,7 @@
   </div>
   <code>
     let boxx = document.querySelector(".box");
+
     function handleClick(e) {
       console.log("click");
     }
@@ -58,6 +59,7 @@
     // удаление обработчиков через клонирование
     const elementClone = boxx.cloneNode(true);
     boxx.parentNode.replaceChild(elementClone, boxx);
+    
 </code>
 
   <script src="./main.js"></script>

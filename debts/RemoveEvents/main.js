@@ -1,4 +1,5 @@
 let boxx = document.querySelector(".box");
+
 function handleClick(e) {
   console.log("click");
 }
@@ -28,5 +29,5 @@ remove.onclick = function () {
 };
 
 // удаление обработчиков через клонирование
-const elementClone = boxx.cloneNode(true);
-boxx.parentNode.replaceChild(elementClone, boxx);
+// const elementClone = boxx.cloneNode(true);
+// boxx.parentNode.replaceChild(elementClone, boxx);
