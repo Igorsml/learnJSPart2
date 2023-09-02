@@ -18,20 +18,50 @@
 
 <body>
 
-  <div id="elem"></div>
-
-
-  <script>
-
-  </script>
-
-  <code>
-
-  </code>
 
   <hr>
+  <div class="box"></div>
+  <div style="display: flex; justify-content: center;">
+    <button id="add" onclick="addEventListener">Добавить обработчики</button>
+    <button id="remove" onclick="removeEventListener">Удалить обработчики</button>
+  </div>
+  <code>
+    let boxx = document.querySelector(".box");
+    function handleClick(e) {
+      console.log("click");
+    }
+    
+    function colorIn(e) {
+      e.target.style.backgroundColor = "black";
+    }
+    
+    function colorOut(e) {
+      e.target.style.backgroundColor = "grey";
+    }
+    
+    add.onclick = function () {
+      if (boxx) {
+        boxx.addEventListener("mouseenter", colorIn);
+        boxx.addEventListener("mouseout", colorOut);
+        boxx.addEventListener("click", handleClick);
+        console.log("Обработчики добавлены");
+      }
+    };
+    
+    remove.onclick = function () {
+      boxx.removeEventListener("click", handleClick);
+      boxx.removeEventListener("mouseenter", colorIn);
+      boxx.removeEventListener("mouseout", colorOut);
+      console.log("Обработчики удалены");
+    };
+    
+    // удаление обработчиков через клонирование
+    const elementClone = boxx.cloneNode(true);
+    boxx.parentNode.replaceChild(elementClone, boxx);
+</code>
 
   <script src="./main.js"></script>
+
 </body>
 
 </html>
