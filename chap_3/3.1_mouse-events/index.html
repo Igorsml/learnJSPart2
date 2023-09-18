@@ -54,21 +54,22 @@
     list.onmousedown = (e) => false;
   </script>
   <code>
+    const list = document.querySelector('#ul');
+    const liList = document.querySelectorAll('#ul li');
 
+    list.addEventListener('mousedown', (e) => {
+      if (event.target.tagName != "LI") return;
+      if (!e.ctrlKey) liList.forEach((list) => list.classList.remove('selected'));
+      if (e.target.tagName === 'LI') {
+        e.target.classList.add('selected');
+      }
+    });
+
+    list.onmousedown = (e) => false;
   </code>
 
   <hr>
-  <h2>Task # 2. </h2>
 
-  <script>
-
-  </script>
-
-  <code>
-
-  </code>
-
-  <hr>
 
   <script src="./3.1_mouse-events.js"></script>
 </body>

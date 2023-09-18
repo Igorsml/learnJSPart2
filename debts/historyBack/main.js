@@ -7,14 +7,14 @@ document.body.addEventListener("keydown", (event) => {
     tagName !== "input" &&
     tagName !== "textarea"
   ) {
-    event.preventDefault();
+    event.stopPropagation();
     window.history.back();
   }
 });
 
 document.body.addEventListener("mouseup", (event) => {
   if (event.button === 3 || event.button === 4) {
-    event.preventDefault();
+    event.stopPropagation();
     window.history.back();
   }
 });

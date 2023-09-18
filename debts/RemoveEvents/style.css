@@ -140,8 +140,6 @@ th:hover {
 }
 
 
-
-
 .selected {
   background: rgb(171, 255, 171);
 }
@@ -150,3 +148,28 @@ li {
   cursor: pointer;
 }
 
+.elem {
+  display: inline-block;
+  width: 500px;
+  height: 500px;
+  background: rgb(73, 73, 73);
+  margin: auto;
+  border-radius: 10px;
+}
+
+.redPen {
+  background: rgb(230, 69, 69);
+}
+
+.box {
+  display: inline-block;
+  width: 500px;
+  height: 500px;
+  background: rgb(73, 73, 73);
+  margin: auto;
+  border-radius: 10px;
+}
+
+.blackPen {
+  background: black;
+}

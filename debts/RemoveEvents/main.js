@@ -1,12 +1,33 @@
-const elem = document.querySelector("#elem1");
+let boxx = document.querySelector(".box");
 
-elem.addEventListener("click", () => console.log("click"));
-elem.addEventListener("keydown", () => console.log("keydown"));
-elem.addEventListener("onmouseover", () => console.log("onmouseover"));
+function handleClick(e) {
+  console.log("click");
+}
 
-elem.removeEventListener("click", () => console.log());
-elem.removeEventListener("keydown", () => console.log("keydown"));
-elem.removeEventListener("onmouseover", () => console.log("keydown"));
+function colorIn(e) {
+  e.target.style.backgroundColor = "black";
+}
 
-const elementClone = elem.cloneNode(true);
-elem.parentNode.replaceChild(elementClone, element);
+function colorOut(e) {
+  e.target.style.backgroundColor = "grey";
+}
+
+add.onclick = function () {
+  if (boxx) {
+    boxx.addEventListener("mouseenter", colorIn);
+    boxx.addEventListener("mouseout", colorOut);
+    boxx.addEventListener("click", handleClick);
+    console.log("Обработчики добавлены");
+  }
+};
+
+remove.onclick = function () {
+  boxx.removeEventListener("click", handleClick);
+  boxx.removeEventListener("mouseenter", colorIn);
+  boxx.removeEventListener("mouseout", colorOut);
+  console.log("Обработчики удалены");
+};
+
+// удаление обработчиков через клонирование
+// const elementClone = boxx.cloneNode(true);
+// boxx.parentNode.replaceChild(elementClone, boxx);
