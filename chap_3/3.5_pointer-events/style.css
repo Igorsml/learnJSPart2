@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;600;700&display=swap');
+
+
+
+  header {
+    flex-shrink: 0;
+  }
+
+  body {
+    font-family: Fira, sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  header {
+    background-color: #333;
+    padding: 10px;
+  }
+
+  
+   code {
+    background: rgb(250, 223, 169);
+    color: rgb(56, 56, 56);
+    font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.5;
+    tab-size: 2;
+    hyphens: none;
+    padding: 1em;
+    margin: 0.5em 0px;
+    overflow: auto;
+    border-radius: 0.3em;
+    box-shadow: #333;
+  }
+
+  hr {
+    margin: 30px 0;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(213, 213, 213), rgba(0, 0, 0, 0));
+  }
+
+  .main {
+    display: flex;
+    align-items: space-between;
+  }
+
+  .main .img-item {
+    margin: 0 10px;
+  }
+
+  .main .img-item img {
+    width: 300px;
+    height: 220px;
+    margin-bottom: 90px;
+  }
+
+  h1 {
+    margin: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  h2 {
+    color: rgb(66, 66, 66);
+    border-bottom: 1px solid #ccc;
+  }
+
+
+  button {
+    display: inline-block;
+    text-decoration: none;
+    margin: 10px;
+    width: 30%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color .2s linear;
+  }
+
+  button:hover {
+    background-color: #72c775;
+  }
+
+  button:active {
+    background-color: #4ceeb0;
+  }
+
+  button:disabled,
+  button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+  .sweetLink {
+    height: 30px;
+  }
+  
+  .sweetList {
+   position: relative;
+  }
+
+.pane {
+  background: #edf5e1;
+  padding: 10px 20px 10px;
+  border-top: solid 2px #c4df9b;
+  position: relative;
+}
+
+.hide {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid black;
+  padding: 4px;
+}
+th {
+  cursor: pointer;
+}
+th:hover {
+  background: yellow;
+}
+
+.selected {
+  background: rgb(171, 255, 171);
+}
+
+li {
+  cursor: pointer;
+}
+
+.draggable {
+  padding: 1rem;
+  background: black;
+  color: white;
+  min-width: 20vmin;
+  height: 20vmin;
+  cursor: pointer;
+  margin: 1rem;
+  cursor: move;
+
+  white-space: pre-wrap;
+  font-family: monospace;
+  user-select: none;
+}
+
+.draggable:hover {
+  background: red;
+}
