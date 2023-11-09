@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse events</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png.png">
+  <link rel="manifest" href="../../favicon/site.webmanifest">
+  <link rel="mask-icon" href="../../favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+
+  <h2>Task # 1. Бесконечная страница</h2>
+  <p>Создайте бесконечную страницу. Когда посетитель прокручивает её до конца, она автоматически добавляет текущие время
+    и дату в текст (чтобы посетитель мог прокрутить ещё).
+  </p>
+  <p>Пожалуйста, обратите внимание на две важные особенности прокрутки:</p>
+
+  <ol>
+    <li><strong>Прокрутка «эластична».</strong> Можно прокрутить немного дальше начала или конца документа на некоторых
+      браузерах/устройствах (после появляется пустое место, а затем документ автоматически «отскакивает» к нормальному
+      состоянию).</li>
+    <li><strong>Прокрутка неточна.</strong> Если прокрутить страницу до конца, можно оказаться в 0-50px от реальной
+      нижней границы документа.</li>
+  </ol>
+
+  Таким образом, «прокрутка до конца» должна означать, что посетитель находится на расстоянии не более 100px от конца
+  документа.
+
+  <p>P.S. В реальной жизни мы можем захотеть показать «больше сообщений» или «больше товаров».</p>
+
+  <a href="./infinity-scroll.html" target="_blank">Решение</a>
+
+
+  <script>
+
+  </script>
+  <code>
+
+  </code>
+
+  <hr>
+  <h2>Task # 2. Кнопка вверх/вниз</h2>
+  <p>Она должна работать следующим образом:</p>
+  <ul>
+    <li>Пока страница не прокручена вниз хотя бы на высоту окна – кнопка невидима.</li>
+    <li>Когда страница прокручена вниз больше, чем на высоту окна – появляется стрелка «наверх» в левом верхнем углу.
+      Если страница прокручивается назад, стрелка исчезает.</li>
+    <li>Когда нажимается стрелка, страница прокручивается вверх.</li>
+  </ul>
+  <code>
+    const backToTopBtn = document.querySelector(".back-to-top-button");
+
+    function scrollToTop() {
+      window.addEventListener("scroll", (e) => {
+        window.pageYOffset > 500
+          ? backToTopBtn.classList.add("show")
+          : backToTopBtn.classList.remove("show");
+      });
+    
+      return window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    
+    scrollToTop();
+    
+  </code>
+
+  <hr>
+  <h2>Task # 3. Загрузка видимых изображений</h2>
+  <p>Допустим, у нас есть клиент с низкой скоростью соединения, и мы хотим сэкономить его трафик.</p>
+  <p>Для этого мы решили не показывать изображения сразу, а заменять их на «макеты»</p>
+  <a href="./loadImages.html" target="_blank">Решение</a>
+
+  <script>
+
+  </script>
+
+  <code>
+
+  </code>
+
+  <hr>
+  <p class='container' style="height: 180vh;">scroll down V</p>
+  <button onclick="scrollToTop()" class="back-to-top-button"></button>
+  <script src="./main.js"></script>
+</body>
+
+</html>
