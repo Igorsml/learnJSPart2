@@ -43,12 +43,32 @@
 
   <a href="./infinity-scroll.html" target="_blank">Решение</a>
 
-
-  <script>
-
-  </script>
   <code>
-
+    const item = document.querySelector(".container");
+    const revealPoint = 100;
+    
+    function addDate() {
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        `
+    <p>Date: ${new Date()}</p>
+    
+    `
+      );
+    }
+    
+    function setInfinitePage() {
+      while (
+        document.documentElement.offsetHeight -
+          window.pageYOffset -
+          window.innerHeight <
+        revealPoint
+      ) {
+        addDate();
+      }
+    }
+    
+    window.addEventListener("scroll", setInfinitePage);    
   </code>
 
   <hr>
@@ -83,12 +103,31 @@
   <p>Для этого мы решили не показывать изображения сразу, а заменять их на «макеты»</p>
   <a href="./loadImages.html" target="_blank">Решение</a>
 
-  <script>
-
-  </script>
-
   <code>
-
+    function isVisible(elem) {
+      if (
+        elem.getBoundingClientRect().top > 0 &&
+        elem.getBoundingClientRect().top < document.documentElement.clientHeight
+      ) {
+        return elem;
+      }
+    }
+    
+    function showVisible() {
+      for (let img of document.querySelectorAll("img")) {
+        let realSrc = img.dataset.src;
+        if (!realSrc) continue;
+    
+        if (isVisible(img)) {
+          realSrc += "?nocache=" + Math.random();
+          img.src = realSrc;
+          img.dataset.src = "";
+        }
+      }
+    }
+    
+    window.addEventListener("scroll", showVisible);
+    showVisible();
   </code>
 
   <hr>
