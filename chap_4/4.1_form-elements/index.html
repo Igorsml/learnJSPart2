@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse events</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png.png">
+  <link rel="manifest" href="../../favicon/site.webmanifest">
+  <link rel="mask-icon" href="../../favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <h2>Task # 1. Добавьте пункт к выпадающему списку</h2>
+  <p>Имеется select</p>
+  <code>
+    <select id="genress">
+    <option value="rock">Рок</option>
+    <option value="blues" selected>Блюз</option>
+  </select>
+</code>
+
+  <p>Используя JavaScript:</p>
+  <ol>
+    <li>Выведите значение и текст выбранного пункта.</li>
+    <li>Добавьте пункт: <option value="classic">Классика</option>
+    </li>
+    <li>Сделайте его выбранным.</li>
+  </ol>
+
+  <select id="genres">
+    <option value="rock">Рок</option>
+    <option value="blues" selected>Блюз</option>
+  </select>
+  <script>
+    const select = document.body.querySelector("#genres");
+    console.log(select.value);
+
+    let selected = Array.from(select.options).filter(option => option.selected).map(option => option.text);
+    console.log(selected);
+
+    const classicOption = new Option('Классика', 'classic', true, true);
+    console.log(select.add(classicOption));
+  </script>
+
+
+  <code>
+    const select = document.body.querySelector("#genres");
+
+    let selected = Array.from(select.options).filter(option => option.selected).map(option => option.text);
+
+    const classicOption = new Option('Классика', 'classic', true, true);
+  </code>
+
+  <hr>
+  <h2>Task # 2 (own). Динамическое отображение пароля</h2>
+  <p>Создайте поле для ввода пароля с возможностью его динамического отображения (показать/скрыть пароль). Кнопка должна
+    менять иконку и состояние поля пароля между текстовым и скрытым вводом.</p>
+
+  <input type="password" id="password" placeholder="Enter password" />
+  <button data-toggle-password onclick="togglePasswordVisibility()">Show Password</button>
+
+  <code>
+    const buttonTogglePassword = document.body.querySelector(
+      "[data-toggle-password]"
+    );
+    
+    function togglePasswordVisibility() {
+      const password = document.body.querySelector("#password");
+    
+      if (password.value.length && password.type === "password") {
+        password.type = "text";
+        buttonTogglePassword.textContent = "Hide Password";
+      } else {
+        password.type = "password";
+        buttonTogglePassword.textContent = "Show Password";
+      }
+    }
+    
+  </code>
+
+  <hr>
+
+  <h2>Task # 3 (own). Динамическое добавление полей ввода</h2>
+  <p>Создайте кнопку "Add Field", которая добавляет поле ввода в форму по нажатию. Это позволит пользователям
+    динамически добавлять новые поля, когда им это нужно.</p>
+  <form id="dynamicForm">
+    <div id="inputFields">
+      <input type="text" name="field1" placeholder="Field 1">
+    </div>
+    <button type="button" onclick="addInputField()">Add Field</button>
+  </form>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>
